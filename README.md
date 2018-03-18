@@ -1,2 +1,9 @@
-# UGR-GII-CSI-4-TFG-Trabajo_Fin_de_Grado-17-18-Scala
-Trabajo Fin de Grado - TFG (4 curso) realizado en la ETSIIT, UGR en el curso 2017/2018 
+# Trabajo Fin de Grado (TFG) - 4º - UGR - CSI - ETSIIT - GII
+
+Trabajo Fin de Grado (TFG) del grado en Ingeniería Informática en el curso 2017/2018, UGR.
+
+## Autor
+
+Francisco Javier Caracuel Beltrán
+
+###### GNU General Public License v3.0
