@@ -221,22 +221,36 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 	}
 
 	/**
-	  * Evalúa la solución que recibe por parámetro y calcula el valor
-	  * correspondiente.
-	  *
-	  * @param solution Solución que se va a comprobar
-	  *
-	  * @return Resultado de la evaluación con la solución recibida
+	  * Agrupa los elementos de la solución en clústeres
+	  * @param solution Lista con los valores para ser decodificados
+	  * @return Diccionario con el número de clúster y todos los elementos que
+	  *         pertenecen a él
 	  */
-	def objective(solution: List[Double]): Double = {
+	def cluster(solution: List[Double]): Map[Int, List[Int]] = {
 
 		// Partiendo de la solución que se recibe se calcula a que clúster
 		// pertenece cada elemento. Se obtiene una lista en la que cada
 		// posición corresponde a la posición del elemento e indica el clúster
 		val clusters = solution.map(getLabel)
 
+		// Se agrupan los elementos de la solución en sus correspondientes
+		// clústeres
+		clusters.zipWithIndex.groupBy(_._1).mapValues(_.map(_._2))
+
+	}
+
+	/**
+	  * Evalúa una solución ya decodificada y devuelve
+	  * su valor correspondiente.
+	  *
+	  * @param clustered Solución decodificada
+	  *
+	  * @return Resultado de la evaluación con la solución recibida
+	  */
+	def objective(clustered: Map[Int, List[Int]]): Double = {
+
 		// Se crea un diccionario con el tamaño que tiene cada clúster
-		val sizes = clusters.zipWithIndex.groupBy(_._1).mapValues(_.size)
+		val sizes = clustered.mapValues(_.size)
 
 		// Se crea un diccionario donde la clave será el número de clúster y
 		// el valor será la distancia total entre todos los elementos de ese
@@ -244,11 +258,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 		var distances = Map[Int, Double]()
 
 		// Se inicializa el diccionario de las distancias a 0
-		clusters.distinct.foreach(cluster => distances += (cluster -> 0))
-
-		// Se agrupan los elementos de la solución en sus correspondientes
-		// clústeres
-		val clustered = clusters.zipWithIndex.groupBy(_._1).mapValues(_.map(_._2))
+		sizes.foreach(cluster => distances += (cluster._1 -> 0))
 
 		// Se agrupan los distintos elementos en sus clusters.
 		clustered.foreach(
@@ -260,9 +270,9 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 					// y se suma al total del clúster
 					pair => distances = distances.
 						updated(x._1, distances(x._1)+distance(listData(pair(0)),
-														listData(pair(1))))
+							listData(pair(1))))
 				)
-			)
+		)
 
 		// Se divide la suma total de las distancias de cada clúster por su
 		// tamaño
@@ -281,6 +291,24 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 
 		//
 		///////////////////////////////
+
+	}
+
+	/**
+	  * Decodifica la solución que recibe por parámetro, la evalúa y devuelve
+	  * su valor correspondiente.
+	  *
+	  * @param solution Solución que se va a comprobar
+	  *
+	  * @return Resultado de la evaluación con la solución recibida
+	  */
+	def objective(solution: List[Double]): Double = {
+
+		// Se agrupan los elementos de la solución en sus correspondientes
+		// clústeres
+		val clustered = cluster(solution)
+
+		objective(clustered)
 
 	}
 
