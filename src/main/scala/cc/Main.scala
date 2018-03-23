@@ -27,10 +27,14 @@ object Main extends App {
 
 	reader.read()
 
-	val launcher = new Launcher(reader, 20, 20, 999)
+	val constraints = 10
+	val clusters = 50
+	val mu = 9999
 
+	val launcher = new Launcher(reader, constraints, clusters, mu)
+
+	//printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
 	/*printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
-	printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
 	printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
 	printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
 	printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
@@ -41,6 +45,22 @@ object Main extends App {
 	printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))
 	printf("The value is %.0f\n", launcher.objective(launcher.generateRandomSolution()))*/
 
-	val brkga = new BRKGA(launcher, 1000, 1000, 0.2.toFloat, 0.2.toFloat, 0.6.toFloat)
+	var t0 = System.currentTimeMillis()
+
+	val population = 1000
+	val generations = 500
+	val pElite = 0.2.toFloat
+	val pMutants = 0.2.toFloat
+	val pInherit = 0.6.toFloat
+
+	val brkga = new BRKGA(launcher, population, generations, pElite, pMutants, pInherit)
+
+	val (bestSolutionBRKGA, bestValueBRKGA) = brkga.run()
+
+	var t1 = System.currentTimeMillis()
+
+	Console.printf("%.0f\n", bestValueBRKGA)
+
+	println("Tiempo total (BRKGA): "+(t1-t0)/1000+" segundos")
 
 }
