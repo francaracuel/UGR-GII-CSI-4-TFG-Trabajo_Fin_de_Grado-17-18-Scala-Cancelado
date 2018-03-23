@@ -96,6 +96,15 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 	}
 
 	/**
+	  * Devuelve el número de atributos de cada elemento
+	  *
+	  * @return Número de atributos
+	  */
+	def getNumAttributes(): Int = {
+		numAttributes
+	}
+
+	/**
 	  * Devuelve la etiqueta como entero que le pertenece a un elemento
 	  * dependiendo del valor que tenga su posición en la solución actual
 	  *
