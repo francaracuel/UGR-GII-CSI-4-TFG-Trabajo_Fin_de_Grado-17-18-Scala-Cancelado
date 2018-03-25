@@ -23,11 +23,13 @@ import algorithms.BRKGA
   */
 object Main extends App {
 
-	val reader = new Reader("wine.data", 1)
+	//val reader = new Reader("iris.data", -1)
+	//val reader = new Reader("wine.data", 1)
+	val reader = new Reader("soybean-small.data", -1)
 
 	reader.read()
 
-	val constraints = 20
+	val constraints = 2
 	val clusters = 10
 	val mu = 9999
 
