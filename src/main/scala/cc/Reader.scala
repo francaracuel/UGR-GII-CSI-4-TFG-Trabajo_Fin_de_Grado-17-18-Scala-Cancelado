@@ -61,7 +61,7 @@ class Reader(filename: String, labelColumn: Int = -1){
 	  *
 	  * @return Lista con los datos de la muestra
 	  */
-	def getListData(): List[List[Double]] = {
+	def getListData: List[List[Double]] = {
 		listData
 	}
 
@@ -70,7 +70,7 @@ class Reader(filename: String, labelColumn: Int = -1){
 	  *
 	  * @return Lista con las etiquetas de los datos
 	  */
-	def getListLabel(): List[Int] = {
+	def getListLabel: List[Int] = {
 		listLabel
 	}
 
@@ -79,7 +79,7 @@ class Reader(filename: String, labelColumn: Int = -1){
 	  *
 	  * @return Número de elementos que tiene la muestra
 	  */
-	def getNumElements(): Int = {
+	def getNumElements: Int = {
 		numElements
 	}
 
@@ -88,7 +88,7 @@ class Reader(filename: String, labelColumn: Int = -1){
 	  *
 	  * @return Número de atributos que tiene cada elemento de la muestra
 	  */
-	def getNumAttributes(): Int = {
+	def getNumAttributes: Int = {
 		numAttributes
 	}
 
@@ -158,7 +158,7 @@ class Reader(filename: String, labelColumn: Int = -1){
 					listData += l.dropRight(1).map(_.toDouble).toList
 
 					// Se añade la etiqueta a la que pertenece el dato
-					listLabel += getLabelValue(l(l.size-1))
+					listLabel += getLabelValue(l(l.length-1))
 
 				// Si es 1, la columna que tiene la etiqueta es la primera
 				case 1 =>
@@ -186,7 +186,7 @@ class Reader(filename: String, labelColumn: Int = -1){
 		numElements = listData.size
 
 		// Se guarda el número de atributos
-		numAttributes = listData(0).size
+		numAttributes = listData.head.size
 
 		// Para trabajar con los datos es necesario convertirlos a lista
 		this.listData = listData.toList
@@ -201,16 +201,16 @@ class Reader(filename: String, labelColumn: Int = -1){
 	  * Sobreescribe el método toString para poder mostrar en formato de tabla
 	  * los datos de la muestra
 	  */
-	override def toString = {
+	override def toString: String = {
 
 		// Se inicializa el string vacío
 		var res = ""
 
 		// Se recorre cada muestra
-		for(i <- 0 to numElements-1){
+		for(i <- 0 until numElements){
 
 			// Se recorre cada atributo
-			for(j <- 0 to numAttributes-1){
+			for(j <- 0 until numAttributes){
 
 				// Se concatena cada atributo al resultado final
 				res += listData(i)(j) + ", "
