@@ -14,9 +14,7 @@
 
 package algorithms
 
-import cc.{Launcher, Reader}
-
-import scala.collection.mutable.ListBuffer
+import cc.{Launcher}
 
 /**
   * Clase BRKGA
@@ -32,9 +30,10 @@ import scala.collection.mutable.ListBuffer
   *              generación siendo de la actual
   * @param pMutants Porcentaje de cromosomas que mutarán en cada generación
   * @param pInherit Probabilidad de que un alelo sea heredado del padre
+  * @param ls Indica si se aplica la búsqueda local o no
   */
 class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
-			pElite: Float, pMutants: Float, pInherit: Float) {
+			pElite: Float, pMutants: Float, pInherit: Float, ls: Boolean = true) {
 
 	private val this.launcher: Launcher = launcher
 
@@ -82,8 +81,19 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 	// la semilla 1818.
 	private val random = new scala.util.Random(1818)
 
-	// Número de atributos de los cromosomas
-	private val numAttributesChromosome: Int = launcher.getNumAttributes
+	// Número de elementos de cada solución
+	private val numElements: Int = launcher.getNumElements
+
+	// Mejor solución
+	private var bestSolution: Map[Int, List[Int]] = _
+
+	// Valor de la mejor solución que se inicializa con el peor resultado
+	private var bestFitness: Double = Double.MaxValue
+
+	// Se crea el objeto que lanzará la búsqueda local
+	private val sls: SLS = new SLS(launcher)
+
+	private val this.ls = ls
 
 	/**
 	  * Decodifica y calcula el valor que le corresponde a cada cromosoma de la
@@ -98,25 +108,17 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 	  *
 	  * @return Una tupla con la mejor solución y su valor correspondiente
 	  */
-	def run(): (List[Double], Double) ={
+	def run(): (Map[Int, List[Int]], Double) ={
+
+		// Se obtiene una lista ordenada con los índices de mejor a peor
+		val (values, indexes) = fitnesses.zipWithIndex.sorted.unzip
+
+		// Se guarda la lista de los índices de los cromosomas ordenados
+		sortedPopulation = indexes
 
 		// Se continuará con el proceso hasta que se hayan creado todas las
 		// generaciones que se esperan
 		while(generationCounter < numGenerations){
-
-			// Se obtiene una lista ordenada con los índices de mejor a peor
-			val (values, indexes) = fitnesses.zipWithIndex.sorted.unzip
-
-			// Se guarda la lista de los índices de los cromosomas ordenados
-			sortedPopulation = indexes
-
-
-			//println(generationCounter)
-			Console.printf("Generación %d: %.0f\n", generationCounter, fitnesses(sortedPopulation(0)))
-			//println(random.nextInt(numElite))
-			//println(random.nextInt(numNotElite)+numElite)
-
-
 
 			// Se guarda la élite de la generación actual
 			val elite = sortedPopulation.take(numElite).map(population(_))
@@ -140,13 +142,58 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 			// la población completa
 			decodePopulation()
 
+			// Se obtiene una lista ordenada con los índices de mejor a peor
+			val (values, indexes) = fitnesses.zipWithIndex.sorted.unzip
+
+			// Se guarda la lista de los índices de los cromosomas ordenados
+			sortedPopulation = indexes
+
+			// Si la mejor solución de la nueva generación supera a la mejor
+			// hasta el momento, se actualiza
+			if(fitnesses(sortedPopulation(0)) < bestFitness){
+
+				// Se guarda la mejor solución ya decodificada
+				bestSolution = launcher.decode(population(sortedPopulation(0)))
+
+				// Se guarda el mejor valor
+				bestFitness = fitnesses(sortedPopulation(0))
+
+			}
+
+			Console.printf("Generación %d (antes de LS): %.0f\n", generationCounter, bestFitness)
+
+			// Si se debe aplicar la búsqueda local
+			if(ls) {
+
+				// Antes de finalizar esta generación, se aplica la búsqueda local
+				// sobre la descendencia pero si modificarla. En caso de encontrar una
+				// mejor solución, se almacena como la mejor pero no se introduce en
+				// la población
+				val (bestSolutionOffspring, bestFitnessOffspring) = offspring.map(sls.run(_)).minBy(_._2)
+
+				// Si la búsqueda local ha mejorado el resultado se sustituye
+				if (bestFitnessOffspring < bestFitness) {
+
+					bestSolution = bestSolutionOffspring
+
+					bestFitness = bestFitnessOffspring
+
+				}
+
+				//println(generationCounter)
+				Console.printf("Generación %d (después de LS): %.0f\n", generationCounter, bestFitness)
+				//println(random.nextInt(numElite))
+				//println(random.nextInt(numNotElite)+numElite)
+
+			}
+
 			// Se aumenta el contador de generaciones
 			generationCounter += 1
 
 		}
 
-		// Se devuelve el mejor cromosoma y su valor
-		(population(sortedPopulation(0)), fitnesses(sortedPopulation(0)))
+		// Se devuelve la mejor solución y su valor
+		(bestSolution, bestFitness)
 
 	}
 
@@ -165,7 +212,7 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 
 		// Se realiza el cruce eligiendo con probabilidad 0.5 los alelos de
 		// uno u otro cromosoma
-		(0 to numAttributesChromosome).toList.map(chromosomes(random.nextInt(2))(_))
+		(0 to (numElements-1)).toList.map(chromosomes(random.nextInt(2))(_))
 
 	}
 
