@@ -27,8 +27,8 @@ object Main extends App {
 
 	reader.read()
 
-	val constraints = 10
-	val clusters = 50
+	val constraints = 20
+	val clusters = 10
 	val mu = 9999
 
 	val launcher = new Launcher(reader, constraints, clusters, mu)
@@ -47,13 +47,13 @@ object Main extends App {
 
 	var t0 = System.currentTimeMillis()
 
-	val population = 1000
-	val generations = 500
+	val population = 100
+	val generations = 200
 	val pElite = 0.2.toFloat
 	val pMutants = 0.2.toFloat
 	val pInherit = 0.6.toFloat
 
-	val brkga = new BRKGA(launcher, population, generations, pElite, pMutants, pInherit)
+	val brkga = new BRKGA(launcher, population, generations, pElite, pMutants, pInherit, ls = false)
 
 	val (bestSolutionBRKGA, bestValueBRKGA) = brkga.run()
 
