@@ -48,7 +48,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 	private var listCL: List[List[Int]] = List[List[Int]]()
 
 	private val numElements = listData.size
-	private val numAttributes = listData(0).size
+	private val numAttributes = listData.head.size
 	private val numLabels = listLabel.toSet[Int].size
 
 	private val this.mu = mu
@@ -91,7 +91,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 	  *
 	  * @return Vector de double con la solución
 	  */
-	def getSolution(): List[Double] = {
+	def getSolution: List[Double] = {
 		solution
 	}
 
@@ -100,8 +100,17 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 	  *
 	  * @return Número de atributos
 	  */
-	def getNumAttributes(): Int = {
+	def getNumAttributes: Int = {
 		numAttributes
+	}
+
+	/**
+	  * Devuelve el número de elementos de cada solución
+	  *
+	  * @return Número de elementos
+	  */
+	def getNumElements: Int = {
+		numElements
 	}
 
 	/**
@@ -136,8 +145,8 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 			// devuelve tiene tamaño 0, lo que significa que los dos elementos
 			// de la tupla no están en el mismo clúster y, por tanto, se suma
 			// 1 al resultado final.
-			if(clustered.filter((t) =>
-				(t._2.exists(_ == tuple(0))) && (t._2.exists(_ == tuple(1)))).size == 0)
+			if(!clustered.exists((t) =>
+				t._2.contains(tuple.head) && t._2.contains(tuple(1))))
 				total += 1
 		}
 
@@ -150,8 +159,8 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 			// devuelve tiene tamaño 1, lo que significa que los dos elementos
 			// de la tupla están en el mismo clúster y, por tanto, se suma
 			// 1 al resultado final.
-			if(clustered.filter((t) =>
-				(t._2.exists(_ == tuple(0))) && (t._2.exists(_ == tuple(1)))).size == 1)
+			if(clustered.exists((t) =>
+				t._2.contains(tuple.head) && t._2.contains(tuple(1))))
 				total += 1
 		}
 
@@ -187,7 +196,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 		var cl = new ListBuffer[List[Int]]
 
 		// Se calculan todas las restricciones posibles sin repetición
-		val combinations = (1 to listData.size - 1).toList.
+		val combinations = (1 until listData.size).toList.
 			combinations(elements).toList
 
 		// Se coge solo el número de restricciones que se quiere tener.
@@ -195,7 +204,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 		// no. Si coinciden serán de tipo Must-Link y si no coinciden de tipo
 		// Cannot-Link
 		Seq.fill(constraints)(random.nextInt(combinations.size)).foreach(index =>
-			if(listLabel(combinations(index)(0)) ==
+			if(listLabel(combinations(index).head) ==
 					listLabel(combinations(index)(1)))
 				ml += combinations(index)
 			else
@@ -226,7 +235,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 	  * @return Diccionario con el número de clúster y todos los elementos que
 	  *         pertenecen a él
 	  */
-	def cluster(solution: List[Double]): Map[Int, List[Int]] = {
+	def decode(solution: List[Double]): Map[Int, List[Int]] = {
 
 		// Partiendo de la solución que se recibe se calcula a que clúster
 		// pertenece cada elemento. Se obtiene una lista en la que cada
@@ -269,7 +278,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 					// Se calcula la distancia eucliea de los puntos
 					// y se suma al total del clúster
 					pair => distances = distances.
-						updated(x._1, distances(x._1)+distance(listData(pair(0)),
+						updated(x._1, distances(x._1)+distance(listData(pair.head),
 							listData(pair(1))))
 				)
 		)
@@ -284,10 +293,14 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 		//
 
 		// Número de restricciones que no se cumplen
-		val infeasibility = getNumberNotSatisfiedConstraints(clustered)
+		var infeasibility = getNumberNotSatisfiedConstraints(clustered)
+
+		// Si hay algún clúster que solo tiene uno o ningún elemento se penaliza
+		if(sizes.values.min <= 1)
+			infeasibility += mu
 
 		// fitness = Z + (mu * n * infeasibility)
-		distances.map(cluster => cluster._2).sum + (mu * numElements * infeasibility)
+		distances.values.sum + (mu * numElements * infeasibility)
 
 		//
 		///////////////////////////////
@@ -306,7 +319,7 @@ class Launcher(listData: List[List[Double]], listLabel: List[Int],
 
 		// Se agrupan los elementos de la solución en sus correspondientes
 		// clústeres
-		val clustered = cluster(solution)
+		val clustered = decode(solution)
 
 		objective(clustered)
 
