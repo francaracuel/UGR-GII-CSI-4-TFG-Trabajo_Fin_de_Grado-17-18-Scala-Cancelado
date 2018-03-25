@@ -4,10 +4,14 @@
     <list default="true" id="65557e59-37cf-4b46-bf8d-1cd2e7322b44" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/algorithms/BRKGA.scala" afterPath="$PROJECT_DIR$/src/main/scala/algorithms/BRKGA.scala" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cc/Launcher.scala" afterPath="$PROJECT_DIR$/src/main/scala/cc/Launcher.scala" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cc/Main.scala" afterPath="$PROJECT_DIR$/src/main/scala/cc/Main.scala" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cc/Reader.scala" afterPath="$PROJECT_DIR$/src/main/scala/cc/Reader.scala" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/algorithms/BRKGA.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/algorithms/BRKGA.class" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Launcher.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Launcher.class" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Main$.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Main$.class" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Main.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Main.class" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Reader.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cc/Reader.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Main.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="55" column="81" lean-forward="true" selection-start-line="55" selection-start-column="81" selection-end-line="55" selection-end-column="81" />
+            <state relative-caret-position="148">
+              <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -42,8 +46,8 @@
       <file leaf-file-name="Reader.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Reader.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="132" column="20" lean-forward="false" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="53" />
+            <state relative-caret-position="17">
+              <caret line="118" column="12" lean-forward="false" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -54,8 +58,8 @@
       <file leaf-file-name="Launcher.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Launcher.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="103" column="21" lean-forward="false" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+            <state relative-caret-position="130">
+              <caret line="280" column="36" lean-forward="false" selection-start-line="280" selection-start-column="32" selection-end-line="280" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#335#377#0" expanded="true" />
@@ -64,14 +68,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BRKGA.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BRKGA.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/algorithms/BRKGA.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state relative-caret-position="335">
+              <caret line="190" column="34" lean-forward="false" selection-start-line="190" selection-start-column="34" selection-end-line="190" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#340#368#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SLS.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/algorithms/SLS.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="159" column="36" lean-forward="false" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="36" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,7 +95,7 @@
       <file leaf-file-name="iris.data" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/iris.data">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1768">
+            <state relative-caret-position="-373">
               <caret line="104" column="16" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="30" />
               <folding />
             </state>
@@ -90,8 +105,8 @@
       <file leaf-file-name="wine.data" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/wine.data">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="60" lean-forward="false" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
+            <state relative-caret-position="69">
+              <caret line="162" column="55" lean-forward="true" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -109,6 +124,12 @@
       <find>getLabelValue</find>
       <find>mu</find>
       <find>float</find>
+      <find>constraint</find>
+      <find>mapval</find>
+      <find>foreach</find>
+      <find>numAttributesChromosome</find>
+      <find>print</find>
+      <find>update</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,10 +144,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/data/iris.data" />
-        <option value="$PROJECT_DIR$/src/main/scala/cc/Reader.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cc/Launcher.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cc/Main.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cc/Reader.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/algorithms/SLS.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/algorithms/BRKGA.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cc/Main.scala" />
       </list>
     </option>
   </component>
@@ -186,6 +208,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="scala" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UGR-GII-CSI-4-TFG-Trabajo_Fin_de_Grado-17-18-Scala" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UGR-GII-CSI-4-TFG-Trabajo_Fin_de_Grado-17-18-Scala" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UGR-GII-CSI-4-TFG-Trabajo_Fin_de_Grado-17-18-Scala" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UGR-GII-CSI-4-TFG-Trabajo_Fin_de_Grado-17-18-Scala" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="cc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="UGR-GII-CSI-4-TFG-Trabajo_Fin_de_Grado-17-18-Scala" type="b2602c69:ProjectViewProjectNode" />
@@ -399,16 +437,15 @@
       <workItem from="1521473449164" duration="5908000" />
       <workItem from="1521561259036" duration="5123000" />
       <workItem from="1521621334361" duration="644000" />
-      <workItem from="1521797162785" duration="10424000" />
+      <workItem from="1521797162785" duration="54097000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135087000" />
+    <option name="totallyTimeSpent" value="178760000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -419,7 +456,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2698908" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="263" width="1366" height="211" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2698908" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="263" width="1366" height="211" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -455,14 +492,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/iris.data">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="104" column="16" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Launcher.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3791">
@@ -866,18 +895,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/iris.data">
+    <entry file="file://$PROJECT_DIR$/data/wine.data">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="104" column="16" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="30" />
+        <state relative-caret-position="69">
+          <caret line="162" column="55" lean-forward="true" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Reader.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="132" column="20" lean-forward="false" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="53" />
+        <state relative-caret-position="17">
+          <caret line="118" column="12" lean-forward="false" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/iris.data">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-373">
+          <caret line="104" column="16" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/algorithms/SLS.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="159" column="36" lean-forward="false" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -886,8 +933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Launcher.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="103" column="21" lean-forward="false" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+        <state relative-caret-position="130">
+          <caret line="280" column="36" lean-forward="false" selection-start-line="280" selection-start-column="32" selection-end-line="280" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#335#377#0" expanded="true" />
@@ -895,31 +942,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/wine.data">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/algorithms/BRKGA.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="60" lean-forward="false" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Main.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="55" column="81" lean-forward="true" selection-start-line="55" selection-start-column="81" selection-end-line="55" selection-end-column="81" />
+        <state relative-caret-position="335">
+          <caret line="190" column="34" lean-forward="false" selection-start-line="190" selection-start-column="34" selection-end-line="190" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/algorithms/BRKGA.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cc/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        <state relative-caret-position="148">
+          <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#340#368#0" expanded="true" />
           </folding>
         </state>
       </provider>
