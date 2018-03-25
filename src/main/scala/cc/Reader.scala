@@ -116,6 +116,18 @@ class Reader(filename: String, labelColumn: Int = -1){
 
 			}
 
+			case "soybean-small.data" => label match {
+
+				case "D1" => 1
+
+				case "D2" => 2
+
+				case "D3" => 3
+
+				case "D4" => 4
+
+			}
+
 			case default => label.toInt
 
 		}
