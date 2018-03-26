@@ -24,8 +24,8 @@ import algorithms.BRKGA
 object Main extends App {
 
 	//val reader = new Reader("iris.data", -1)
-	//val reader = new Reader("wine.data", 1)
-	val reader = new Reader("soybean-small.data", -1)
+	val reader = new Reader("wine.data", 1)
+	//val reader = new Reader("soybean-small.data", -1)
 
 	reader.read()
 
