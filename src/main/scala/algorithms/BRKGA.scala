@@ -55,7 +55,13 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 	// Se calcula la cantidad de cromosomas que serán mutaciones
 	private val numMutants: Int = (numPopulation*pMutants).toInt
 
+	// Probabilidad de heredar del padre
 	private val this.pInherit: Float = pInherit
+
+	// Lista con las probabilidades para heredar de un padre
+	private val probabilities: List[Int] = generateProbabilities()
+
+	println(probabilities)
 
 	// Se calcula la cantidad de cromosomas restantes de la élite y mutaciones
 	private val numRemainder: Int = numPopulation - numElite - numMutants
@@ -101,6 +107,18 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 	  */
 	private def decodePopulation(): Unit ={
 		fitnesses = population.map(launcher.objective(_))
+	}
+
+	/**
+	  * Genera una lista que se utilizará para calcular el padre que se debe
+	  * escoger en el cruce siguiendo la probabilidad recibida
+	  */
+	private def generateProbabilities(): List[Int] = {
+
+		val auxP = ("%01.2f".format(1-pInherit)).toFloat
+
+		List.fill((pInherit*10).toInt)(0) ::: List.fill((auxP*10).toInt)(1)
+
 	}
 
 	/**
@@ -210,9 +228,9 @@ class BRKGA(launcher: Launcher, numPopulation: Int, numGenerations: Int,
 		// Se crea una tupla para poder hacer el cruce de manera más cómoda
 		val chromosomes = List(chromosome1, chromosome2)
 
-		// Se realiza el cruce eligiendo con probabilidad 0.5 los alelos de
+		// Se realiza el cruce eligiendo con probabilidad "pInherit" los alelos de
 		// uno u otro cromosoma
-		(0 to (numElements-1)).toList.map(chromosomes(random.nextInt(2))(_))
+		(0 to (numElements-1)).toList.map(chromosomes(probabilities(random.nextInt(10)))(_))
 
 	}
 
